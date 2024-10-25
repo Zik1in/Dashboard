@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .table-section {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .btn-download {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .btn-download:hover {
+            background-color: #2980b9;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}" style="font-weight: bold;">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Left-aligned items -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'current' %}">Current Analysis</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'historical' %}">Historical</a>
+                </li>
+            </ul>
+
+            <!-- Right-aligned logout button -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <form action="/logout/" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link btn btn-link" style="color:white;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <!-- Filter section for keyword and date -->
+            <div class="col-md-12 filter-section">
+                <h3>Search Historical Data</h3>
+                <form id="filterForm" class="form-inline">
+                    <!-- Keyword input -->
+                    <div class="form-group mr-3">
+                        <input type="text" class="form-control" id="keyword" placeholder="Enter keyword" onkeyup="filterTable()">
+                    </div>
+
+                    <!-- Date input -->
+                    <div class="form-group mr-3">
+                        <label for="searchDate" class="mr-2">Select Date:</label>
+                        <input type="date" class="form-control" id="searchDate" onchange="filterTable()">
+                    </div>
+
+                    <button type="reset" class="btn btn-secondary ml-3" onclick="resetFilters()">Reset Filters</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Table section for historical data -->
+            <div class="col-md-12 table-section">
+                <h3>Historical Data Records</h3>
+                <table class="table table-bordered table-hover" id="dataTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">File Name</th>
+                            <th scope="col">Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example row: Add dynamically from backend -->
+                        <tr>
+                            <td>2024-10-15</td>
+                            <td>analysis_2024_10_15.csv</td>
+                            <td><a href="/download/analysis_2024_10_15.csv" class="btn-download">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024-09-28</td>
+                            <td>analysis_2024_09_28.csv</td>
+                            <td><a href="/download/analysis_2024_09_28.csv" class="btn-download">Download</a></td>
+                        </tr>
+                        <tr>
+                            <td>2024-08-19</td>
+                            <td>analysis_2024_08_19.csv</td>
+                            <td><a href="/download/analysis_2024_08_19.csv" class="btn-download">Download</a></td>
+                        </tr>
+                        <!-- Repeat with other historical records -->
+                    </tbody>
+                </table>
+                <p id="noRecords" style="display:none; color:red;">No records found matching the criteria.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for filtering -->
+    <script>
+        // Function to filter table based on keyword and date
+        function filterTable() {
+            let keyword = document.getElementById('keyword').value.toLowerCase();
+            let searchDate = document.getElementById('searchDate').value;
+            let table = document.getElementById('dataTable');
+            let rows = table.getElementsByTagName('tr');
+            let found = false;
+
+            for (let i = 1; i < rows.length; i++) {
+                let dateCell = rows[i].getElementsByTagName('td')[0].textContent;
+                let fileNameCell = rows[i].getElementsByTagName('td')[1].textContent.toLowerCase();
+
+                // Keyword match
+                let keywordMatch = fileNameCell.includes(keyword);
+
+                // Date match
+                let dateMatch = true;
+                if (searchDate) {
+                    dateMatch = (dateCell === searchDate);
+                }
+
+                // Show or hide the row based on both filters
+                if (keywordMatch && dateMatch) {
+                    rows[i].style.display = '';
+                    found = true;
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+
+            // Show "No records found" message if no rows match
+            document.getElementById('noRecords').style.display = found ? 'none' : 'block';
+        }
+
+        // Function to reset filters
+        function resetFilters() {
+            document.getElementById('filterForm').reset();
+            filterTable();  // Reset filter results
+        }
+    </script>
+
+    <!-- Bootstrap

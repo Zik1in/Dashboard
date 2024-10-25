@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@300;400;500;600;700;800;900&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('background.JPG') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    color: aliceblue;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    margin-top: 20px;
+}
+
+h1, .card-header {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: aliceblue;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-group input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: aliceblue;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-group input::placeholder {
+    color: aliceblue;
+}
+
+.input-group-prepend .input-group-text {
+    color: aliceblue;
+    background-color: transparent;
+    border: none;
+}
+
+.input-group .input-group-text i {
+    font-size: 20px;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    background: aliceblue;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.text-light {
+    color: aliceblue;
+}
+
+.text-error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.row.mt-3 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.row.mt-3 a {
+    color: aliceblue;
+    font-size: 14.5px;
+    text-decoration: none;
+}
+
+.row.mt-3 a:hover {
+    text-decoration: underline;
+}

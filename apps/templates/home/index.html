@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}" style="font-weight: bold;">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Left-aligned items -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'current' %}">Current Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'historical' %}">Historical</a>
+                </li>
+            </ul>
+
+            <!-- Right-aligned logout button -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <form action="/logout/" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link btn btn-link" style="color:white;">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-5">
+        <!-- Dashboard Introduction -->
+        <div class="row">
+            <div class="col text-left">
+                <h1>Bridge Health Partners Data Analysis Dashboard</h1>
+                <p class="lead" style="font-size: 1rem">
+                    <br>
+                    Welcome to the Bridge Health Partners Data Dashboard, where you can analyze current and historical healthcare data for deeper insights into patient outcomes and resource allocation. This dashboard allows you to interact with real-time data and explore historical records to support informed decision-making.
+                    <br><br>
+                    <strong>Current Analysis</strong>: you can upload and analyze your latest datasets. The results will be processed and displayed through visualizations to help you quickly understand key metrics and trends based on the input data.
+                    <br><br>
+                    <strong>Historical</strong>: you will find a list of previously analyzed datasets. Here, you can access and review the outcomes of past analyses, compare them against current data, and identify patterns over time.
+                </p>
+            </div>
+        </div>
+
+        <!-- Current Data and Historical Data Sections -->
+        <div class="row mt-5">
+            <div class="col-md-6 text-center">
+                <h3>Current Analysis</h3>
+                <i class='bx bx-bar-chart-alt-2' style="font-size: 5rem;"></i>
+                <br>
+                <a href="{% url 'current' %}" class="btn btn-primary mt-3">Launch</a>
+            </div>
+            <div class="col-md-6 text-center">
+                <h3>Historical</h3>
+                <i class='bx bx-history' style="font-size: 5rem;"></i>
+                <br>
+                <a href="{% url 'historical' %}" class="btn btn-primary mt-3">Launch</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and Boxicons JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

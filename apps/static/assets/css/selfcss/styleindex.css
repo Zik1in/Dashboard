@@ -1,0 +1,127 @@
+/* Global settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f7f7f7;
+    color: #333;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: #2c3e50;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ecf0f1;
+}
+
+.navbar-nav .nav-link {
+    color: #ecf0f1;
+    font-size: 1.1rem;
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #3498db;
+}
+
+.nav-item.active .nav-link {
+    color: #3498db;
+}
+
+/* Dashboard intro section */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+p.lead {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* Sections for Current Analysis and Historical */
+h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+i {
+    color: #2980b9;
+}
+
+.btn-primary {
+    background-color: #2980b9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Cards styling */
+.container {
+    margin-top: 50px;
+}
+
+.row.mt-5 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.col-md-6 {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 20px 0;
+}
+
+.col-md-6:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+i.bx {
+    font-size: 5rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    margin-top: 50px;
+}
+
+.footer a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

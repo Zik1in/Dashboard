@@ -1,0 +1,7 @@
+asgiref==3.8.1
+Django==5.1.2
+path==17.0.0
+python-decouple==3.4
+setuptools==75.2.0
+sqlparse==0.5.1
+Unipath==1.1
